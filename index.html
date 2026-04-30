@@ -55,5 +55,28 @@
 
 </main>
 
+  <script>
+  const btn = document.getElementById('btn-comecar');
+  const cards = document.getElementById('guia-cards');
+  const divisor = document.getElementById('meu-divisor');
+
+  btn.addEventListener('click', () => {
+    
+    cards.style.display = 'grid';
+    divisor.style.display = 'block';
+
+    cards.classList.add('efeito-entrada');
+    divisor.classList.add('efeito-entrada');
+    
+    setTimeout(() => {
+      cards.scrollIntoView({ behavior: 'smooth' });
+    }, 50);
+    
+    btn.style.transition = '0.5s';
+    btn.style.opacity = '0';
+    setTimeout(() => { btn.style.display = 'none'; }, 500);
+  });
+  </script>
+
 </body>
 </html>
