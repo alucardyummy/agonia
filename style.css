@@ -115,15 +115,21 @@ body {
   margin-top: 20px;
 }
 
+/* CARD COM AJUSTE DE FLEXBOX PARA CENTRALIZAR TUDO */
 .card {
   background: #000;
-  padding: 25px;
+  padding: 20px;
   border: 1px solid #222;
   border-radius: 0; 
   transition: 0.4s;
   cursor: pointer;
   position: relative;
   text-align: center;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .card:hover {
@@ -131,13 +137,15 @@ body {
   transform: translateY(-5px);
 }
 
-/* ÍCONES DOS CARDS - COMPORTADOS E NÍTIDOS */
+/* ÍCONES DOS CARDS - FORÇANDO TAMANHO REAL */
 .card-icon {
-  width: 65px;
-  height: 65px;
+  width: 60px !important;
+  height: 60px !important;
+  max-width: 60px;
+  max-height: 60px;
   object-fit: contain;
-  margin: 0 auto 15px;
-  display: block;
+  margin: 0 auto 15px !important;
+  display: block !important;
   filter: drop-shadow(0 0 8px rgba(62, 198, 184, 0.6));
 }
 
