@@ -86,7 +86,7 @@ body {
 
 .hero h1 {
   font-family: 'LemonMilk', sans-serif;
-  font-size: 2.5rem;
+  font-size: 2.1rem; /* Reduzi de 2.5rem para 2.1rem */
   text-transform: uppercase;
   margin-bottom: 10px;
   letter-spacing: 2px;
@@ -107,13 +107,18 @@ body {
   text-transform: uppercase;
   font-weight: bold;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.2s; /* Um pouco mais rápido para parecer instantâneo */
   border-radius: 8px;
+  outline: none;
 }
 
-.primary:hover, .primary:active {
-  background: #3ec6b8;
-  box-shadow: 0 0 25px rgba(62,198,184,0.8);
+.primary:hover, 
+.primary:active,
+.primary:focus {
+  background: #3ec6b8 !important;
+  color: #000 !important;
+  box-shadow: 0 0 25px rgba(62, 198, 184, 0.9) !important;
+  transform: scale(0.98); /* Dá uma sensação de botão sendo apertado */
 }
 
 .divisor {
