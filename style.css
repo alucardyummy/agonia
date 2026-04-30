@@ -40,17 +40,18 @@ body {
 }
 
 .hero {
-  margin: 15px;
+  margin: 0;
   padding: 30px 15px;
-  border-radius: 2px;
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background: #000;
-  text-align: center;
+  border: 1px solid rgba(62, 198, 184, 0.6);
+  box-shadow: 0 0 15px rgba(62, 198, 184, 0.4); 
   position: relative;
   overflow: hidden;
-
-  border: 1px solid rgba(62, 198, 184, 0.6);
-  
-  box-shadow: 0 0 15px rgba(62, 198, 184, 0.4); 
 }
 
 .hero::before {
