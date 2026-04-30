@@ -105,25 +105,18 @@ body {
 .divisor {
     width: 100%;
     height: 100px;
+    background-image: url('img/divisor-icon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     margin: 40px 0;
+    filter: drop-shadow(0 0 8px rgba(62, 198, 184, 0.5));
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     overflow: visible;
 }
 
-.divisor::before {
-    content: "";
-    position: absolute;
-    width: 100vw;
-    height: 2px;
-    background: linear-gradient(to bottom, transparent, #3ec6b8, transparent);
-    box-shadow: 
-        0 0 10px #3ec6b8,
-        0 0 20px #3ec6b8,
-        0 0 40px rgba(62, 198, 184, 0.8);
-    z-index: 0;
+.divisor::before, .divisor::after {
+    display: none;
 }
 
 
