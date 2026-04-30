@@ -44,7 +44,7 @@
       <p>Ajustes de Wine e GPU para mais FPS</p>
     </div>
     
-    <div class="card">
+    <div class="card efeito-entrada">
       <img src="img/mods-icon.png" class="card-icon">
       <h3>Mods</h3>
       <p>Como instalar WickedWhims e CC</p>
@@ -56,7 +56,7 @@
       <p>Jogo e Mods totalmente em Português</p>
     </div>
     
-    <div class="card">
+    <div class="card efeito-entrada">
       <img src="img/problemas-icon.png" class="card-icon">
       <h3>Problemas</h3>
       <p>Corrigir bugs comuns</p>
@@ -72,7 +72,7 @@
     <a href="https://play.google.com/store/apps/details?id=idm.internet.download.manager" target="_blank" class="btn-download">Baixar 1DM</a>
     <h3>Como configurar o 1DM:</h3>
     <p>Assista ao vídeo abaixo para saber exatamente onde clicar após a instalação:</p>
-    <video class="step-video" controls playsinline>
+    <video class="step-video" controls playsinline controlsList="nodownload" oncontextmenu="return false;">
       <source src="video/1DM-demonstrativo.mp4" type="video/mp4">
       Seu navegador não suporta o vídeo.
     </video>
@@ -86,7 +86,7 @@
     <p>1. Primeiro, instale o <b>ZArchiver</b> e use-o para extrair o arquivo .zip na sua pasta de Downloads.</p>
     <a href="https://play.google.com/store/apps/details?id=ru.zdevs.zarchiver" target="_blank" class="btn-download">Baixar ZArchiver na Play Store</a>
     <p><b>Tutorial de Extração:</b></p>
-    <video class="step-video" controls playsinline>
+    <video class="step-video" controls playsinline controlsList="nodownload" oncontextmenu="return false;">
       <source src="video/ExtracaoTutorial-demonstrativo.mp4" type="video/mp4">
     </video>
     <div class="divisor"></div>
@@ -98,7 +98,7 @@
       The Sims 4 Base Deluxe / The Sims 4 / Game / Bin / TS4_DX9_x64.exe
     </code>
     <p><b>Tutorial GameHub:</b></p>
-    <video class="step-video" controls playsinline>
+    <video class="step-video" controls playsinline controlsList="nodownload" oncontextmenu="return false;">
       <source src="video/GAMEHUB-demonstrativo.mp4" type="video/mp4">
     </video>
     <p><i>Dica: Se não encontrar a pasta, verifique se a extração terminou corretamente.</i></p>
@@ -112,11 +112,23 @@
   const topbar = document.getElementById('minha-topbar');
   const hero = document.querySelector('.hero');
 
-  btn.addEventListener('click', () => {
+  function mostrarConteudo() {
     hero.style.display = 'none';
     topbar.style.display = 'flex';
     divisor.style.display = 'block';
     cards.style.display = 'grid';
+    topbar.classList.add('efeito-entrada');
+    divisor.classList.add('efeito-entrada');
+    cards.classList.add('efeito-entrada');
+  }
+
+  if (sessionStorage.getItem('guiaAberto') === 'true') {
+    mostrarConteudo();
+  }
+
+  btn.addEventListener('click', () => {
+    sessionStorage.setItem('guiaAberto', 'true');
+    mostrarConteudo();
     window.scrollTo(0, 0);
   });
 
