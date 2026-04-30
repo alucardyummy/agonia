@@ -34,12 +34,12 @@
     <p>Baixar jogo + apps necessários</p>
 </div>
 
-    <div class="card">
-      <img src="img/instalacao-icon.png" class="card-icon">
-      <h3>Instalação</h3>
-      <p>Configurar GameHub corretamente</p>
-    </div>
-
+    <div class="card efeito-entrada" onclick="abrirModal('modal-instalacao')">
+    <img src="img/instalacao-icon.png" class="card-icon" alt="Instalação">
+    <h3>Instalação</h3>
+    <p>Configurar GameHub corretamente</p>
+</div>
+    
     <div class="card efeito-entrada">
     <div class="card-icon-placeholder">⚙️</div>
     <h3>Configuração</h3>
@@ -123,6 +123,50 @@ function fecharModal(id) {
             <source src="video/1DM-demonstrativo.mp4" type="video/mp4">
             Seu navegador não suporta o vídeo.
         </video>
+
+      <div class="modal-overlay" id="modal-instalacao">
+    <div class="modal-content efeito-entrada">
+        <button onclick="fecharModal('modal-instalacao')" class="btn-fechar">×</button>
+        
+        <h2>Instalação do Jogo</h2>
+        
+        <p>1. Primeiro, instale o <b>ZArchiver</b> e use-o para extrair o arquivo .zip na sua pasta de Downloads.</p>
+        
+        <a href="https://play.google.com/store/apps/details?id=ru.zdevs.zarchiver" target="_blank" class="btn-download">
+            Baixar ZArchiver na Play Store
+        </a>
+
+        <p><b>Tutorial de Extração:</b></p>
+        <video class="step-video" controls playsinline>
+            <source src="video/ExtracaoTutorial-demonstrativo.mp4" type="video/mp4">
+            Seu navegador não suporta o vídeo.
+        </video>
+        
+        <div class="divisor"></div>
+
+        <p>2. Baixe e instale o emulador <b>GameHub</b> (Versão Android) pelo site oficial:</p>
+        
+        <a href="https://gamehub.xiaoji.com/" target="_blank" class="btn-download">
+            Baixar GameHub Oficial
+        </a>
+
+        <p>3. Abra o app, vá em <b>"Meu"</b> > <b>"Import Games"</b> e selecione <b>"Jogo PC"</b>. Autorize o acesso aos arquivos quando solicitado.</p>
+        
+        <p>4. Navegue pelo armazenamento até encontrar e selecionar o executável (.exe) neste caminho:</p>
+        
+        <code style="color: #3ec6b8; font-size: 0.75rem; display: block; margin: 15px 0; background: #111; padding: 10px; border-radius: 8px; border: 1px solid rgba(62, 198, 184, 0.2);">
+            The Sims 4 Base Deluxe / The Sims 4 / Game / Bin / TS4_DX9_x64.exe
+        </code>
+
+        <p><b>Tutorial GameHub:</b></p>
+        <video class="step-video" controls playsinline>
+            <source src="video/GAMEHUB-demonstrativo.mp4" type="video/mp4">
+            Seu navegador não suporta o vídeo.
+        </video>
+
+        <p><i>Dica: Se você não encontrar a pasta, verifique se a extração no ZArchiver terminou corretamente.</i></p>
+    </div>
+      </div>
       
 </body>
 </html>
