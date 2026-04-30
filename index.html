@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<header class="topbar" id="minha-topbar">
+<header class="topbar" id="minha-topbar" style="display: none;">
   <div class="logo">Sims4AndroidBR</div>
   <button class="btn">Guia</button>
 </header>
@@ -63,16 +63,19 @@
   const hero = document.querySelector('.hero');
 
   btn.addEventListener('click', () => {
-    topbar.style.display = 'none';
     hero.style.display = 'none';
 
-    cards.style.display = 'grid';
+    topbar.style.display = 'flex'; // Usamos flex porque é o padrão da sua topbar
     divisor.style.display = 'block';
+    cards.style.display = 'grid';
 
-    cards.classList.add('efeito-entrada');
+    topbar.classList.add('efeito-entrada');
     divisor.classList.add('efeito-entrada');
+    cards.classList.add('efeito-entrada');
+    
+    window.scrollTo(0, 0);
   });
-  </script>
+</script>
 
 </body>
 </html>
