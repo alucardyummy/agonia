@@ -65,17 +65,19 @@
   btn.addEventListener('click', () => {
     hero.style.display = 'none';
 
-    topbar.style.display = 'flex'; // Usamos flex porque é o padrão da sua topbar
+    topbar.style.display = 'flex';
     divisor.style.display = 'block';
     cards.style.display = 'grid';
 
-    topbar.classList.add('efeito-entrada');
-    divisor.classList.add('efeito-entrada');
-    cards.classList.add('efeito-entrada');
-    
+    requestAnimationFrame(() => {
+      topbar.classList.add('efeito-entrada');
+      divisor.classList.add('efeito-entrada');
+      cards.classList.add('efeito-entrada');
+    });
+
     window.scrollTo(0, 0);
   });
-</script>
+  </script>
 
 </body>
 </html>
