@@ -117,14 +117,11 @@ body {
     content: "";
     position: absolute;
     width: 100vw;
-    height: 2px;
-    background: #3ec6b8;
-    box-shadow: 
-        0 0 10px #3ec6b8,
-        0 0 20px #3ec6b8,
-        0 0 40px rgba(62, 198, 184, 0.7);
+    height: 40px; 
+    background: radial-gradient(ellipse at center, rgba(62, 198, 184, 0.8) 0%, rgba(62, 198, 184, 0.2) 50%, transparent 70%);
     z-index: 0;
 }
+
 
 .divisor::after {
     content: "";
