@@ -28,11 +28,11 @@
 
   <section class="grid" id="guia-cards" style="display: none;">
     
-    <div class="card">
-      <img src="img/download-icon.png" class="card-icon">
-      <h3>Download</h3>
-      <p>Baixar jogo + apps necessários</p>
-    </div>
+    <div class="card efeito-entrada" onclick="abrirModal('modal-download')">
+    <img src="img/download-icon.png" class="card-icon" alt="Download">
+    <h3>Download</h3>
+    <p>Baixar jogo + apps necessários</p>
+</div>
 
     <div class="card">
       <img src="img/instalacao-icon.png" class="card-icon">
@@ -90,7 +90,39 @@
 
     window.scrollTo(0, 0);
   });
+
+    function abrirModal(id) {
+    const modal = document.getElementById(id);
+    modal.style.display = 'flex';
+}
+
+function fecharModal(id) {
+    const modal = document.getElementById(id);
+    modal.style.display = 'none';
+    
+    const videos = modal.querySelectorAll('video');
+    videos.forEach(v => v.pause());
+}
   </script>
 
+  <div class="modal-overlay" id="modal-download">
+    <div class="modal-content efeito-entrada">
+        <button onclick="fecharModal('modal-download')" class="btn-fechar">×</button>
+        
+        <h2>Download & Apps</h2>
+        <p>Primeiro, instale o 1DM. Ele é essencial para baixar o jogo base sem erros e com velocidade máxima.</p>
+        
+        <a href="https://play.google.com/store/apps/details?id=idm.internet.download.manager" target="_blank" class="btn-download">
+            Baixar 1DM
+        </a>
+
+        <h3>Como configurar o 1DM:</h3>
+        <p>Assista ao vídeo abaixo para saber exatamente onde clicar após a instalação:</p>
+        
+        <video class="step-video" controls playsinline>
+            <source src="1DM-demonstrativo.mp4" type="video/mp4">
+            Seu navegador não suporta o vídeo.
+        </video>
+      
 </body>
 </html>
