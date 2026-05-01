@@ -217,7 +217,7 @@
     </video>
     <a href="https://www.mediafire.com/file/m7pd9cqpn199m2s/language-changer.exe/file" target="_blank" class="btn-download">Baixar Language Changer</a>
     <p style="color: #888; font-style: italic; font-size: 0.85rem; margin-top: 20px;">
-      <b>Importante:</b><br>
+      <b>Important:</b><br>
       Alguns mods do WickedWhims precisam de tradução própria além da 'padrão' do mutsvki. Por isso, se ao entrar dentro do TS4 e algum mod que você baixar estiver mostrando as letras em inglês para você, você pode consertar isso buscando a tradução no google. Normalmente, a tradução vem no formato .zip é só extrair através do ZArchiver e, dentro do contêiner do TS4, copiar o .packages da tradução e colar a tradução na pasta Mods em Documents/Eletronic Arts/The Sims 4/Mods
     </p>
   </div>
@@ -321,8 +321,8 @@
     videos.forEach(v => v.pause());
   }
 
-  function criarPoeiraCosmica(posX, posY, qtd = 60) {
-    const corCiano = '#3ec6b8';
+  function criarPoeiraCosmica(posX, posY, explosao = true) {
+    const qtd = explosao ? 12 : 25;
 
     for (let i = 0; i < qtd; i++) {
       const particula = document.createElement('div');
@@ -331,9 +331,19 @@
       particula.style.left = posX + 'px';
       particula.style.top = posY + 'px';
       
-      const angulo = Math.random() * Math.PI * 2;
-      const forcaH = (Math.random() - 0.5) * 150; 
-      const forcaV = (Math.random() * -100) - 20; 
+      let forcaH, forcaV;
+      
+      if (explosao) {
+        const angulo = Math.random() * Math.PI * 2;
+        const raio = 25;
+        forcaH = Math.cos(angulo) * raio;
+        forcaV = Math.sin(angulo) * raio;
+        particula.style.animation = 'brilharSuave 0.4s ease-out forwards';
+      } else {
+        forcaH = (Math.random() - 0.5) * 120;
+        forcaV = (Math.random() * -80) - 10;
+        particula.style.animation = 'cairEsumir 0.6s cubic-bezier(0.1, 0.5, 0.5, 1) forwards';
+      }
       
       particula.style.setProperty('--x', `${forcaH}px`);
       particula.style.setProperty('--y', `${forcaV}px`);
@@ -343,25 +353,25 @@
       particula.style.height = tamanho;
 
       document.body.appendChild(particula);
-      
-      setTimeout(() => {
-        particula.remove();
-      }, 1000);
+      setTimeout(() => particula.remove(), explosao ? 400 : 600);
     }
   }
 
   const handleDown = (e) => {
     const x = e.touches ? e.touches[0].clientX : e.clientX;
     const y = e.touches ? e.touches[0].clientY : e.clientY;
-    
+    const mostrarBolinha = Math.random() > 0.5;
+
     cursor.style.transform = `translate(${x}px, ${y}px)`;
-    cursor.style.opacity = "1";
     
-    setTimeout(() => {
+    if (mostrarBolinha) {
+      cursor.style.opacity = "1";
+      setTimeout(() => { cursor.style.opacity = "0"; }, 250);
+      criarPoeiraCosmica(x, y, true);
+    } else {
       cursor.style.opacity = "0";
-    }, 200);
-    
-    criarPoeiraCosmica(x, y, 80);
+      criarPoeiraCosmica(x, y, false);
+    }
   };
 
   window.addEventListener('mousedown', handleDown);
