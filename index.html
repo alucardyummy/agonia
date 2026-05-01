@@ -15,6 +15,8 @@
   </style>
 </head>
 <body>
+
+<div id="custom-cursor"></div>
   
 <header class="topbar" id="minha-topbar" style="display: none; opacity: 0;">
   <a href="index.html" class="logo">
@@ -248,6 +250,7 @@
   const topbar = document.getElementById('minha-topbar');
   const hero = document.getElementById('hero-section');
   const deviceInfo = document.getElementById('device-info');
+  const cursor = document.getElementById('custom-cursor');
 
   const bgMusic = new Audio('audio/Mii Editor - Mii Maker (Wii U) Music.mp3');
   bgMusic.loop = true;
@@ -318,55 +321,63 @@
     videos.forEach(v => v.pause());
   }
 
-  function criarPoeiraCosmica() {
-  const quantidade = 30;
-  const corCiano = '#3ec6b8';
+  function criarPoeiraCosmica(posX, posY, qtd = 60) {
+    const corCiano = '#3ec6b8';
 
-  for (let i = 0; i < quantidade; i++) {
-    const particula = document.createElement('div');
-    particula.classList.add('poeira-cosmica');
-    
-    particula.style.backgroundColor = corCiano;
-    particula.style.boxShadow = `0 0 4px ${corCiano}, 0 0 8px ${corCiano}`;
+    for (let i = 0; i < qtd; i++) {
+      const particula = document.createElement('div');
+      particula.classList.add('poeira-cosmica');
+      
+      particula.style.left = posX + 'px';
+      particula.style.top = posY + 'px';
+      
+      const angulo = Math.random() * Math.PI * 2;
+      const forcaH = (Math.random() - 0.5) * 150; 
+      const forcaV = (Math.random() * -100) - 20; 
+      
+      particula.style.setProperty('--x', `${forcaH}px`);
+      particula.style.setProperty('--y', `${forcaV}px`);
+      
+      const tamanho = (Math.random() * 1.5 + 0.3) + 'px';
+      particula.style.width = tamanho;
+      particula.style.height = tamanho;
 
-    const rect = muteBtn.getBoundingClientRect();
-    particula.style.left = (rect.left + rect.width / 2) + 'px';
-    particula.style.top = (rect.top + rect.height / 2) + 'px';
-    
-    const angulo = Math.random() * Math.PI * 2;
-    const velocidade = Math.random() * 80 + 30; 
-    const x = Math.cos(angulo) * velocidade;
-    const y = Math.sin(angulo) * velocidade;
-    
-    particula.style.setProperty('--x', `${x}px`);
-    particula.style.setProperty('--y', `${y}px`);
-    
-    const tamanho = (Math.random() * 1.5 + 0.5) + 'px';
-    particula.style.width = tamanho;
-    particula.style.height = tamanho;
-
-    document.body.appendChild(particula);
-    
-    setTimeout(() => {
-      particula.remove();
-    }, 1200);
-  }
-}
-
-muteBtn.addEventListener('click', () => {
-  bgMusic.muted = !bgMusic.muted;
-  
-  if (!bgMusic.muted) {
-    bgMusic.play().catch(() => {});
+      document.body.appendChild(particula);
+      
+      setTimeout(() => {
+        particula.remove();
+      }, 1000);
+    }
   }
 
-  muteBtn.classList.add('clicado');
-  setTimeout(() => {
-    muteBtn.classList.remove('clicado');
-  }, 100);
+  const handleMove = (e) => {
+    const x = e.touches ? e.touches[0].clientX : e.clientX;
+    const y = e.touches ? e.touches[0].clientY : e.clientY;
+    
+    cursor.style.transform = `translate(${x}px, ${y}px)`;
+    cursor.style.opacity = "1";
+    
+    criarPoeiraCosmica(x, y, 4);
+  };
 
-  criarPoeiraCosmica();
-});
+  const handleDown = (e) => {
+    const x = e.touches ? e.touches[0].clientX : e.clientX;
+    const y = e.touches ? e.touches[0].clientY : e.clientY;
+    criarPoeiraCosmica(x, y, 80);
+  };
+
+  window.addEventListener('mousemove', handleMove);
+  window.addEventListener('touchmove', handleMove);
+  window.addEventListener('mousedown', handleDown);
+  window.addEventListener('touchstart', handleDown);
+
+  muteBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    bgMusic.muted = !bgMusic.muted;
+    if (!bgMusic.muted) bgMusic.play().catch(() => {});
+    muteBtn.classList.add('clicado');
+    setTimeout(() => muteBtn.classList.remove('clicado'), 100);
+  });
 </script>
 
 </body>
