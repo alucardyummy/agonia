@@ -306,17 +306,6 @@
     sessionStorage.setItem('guiaAberto', 'true');
     transicaoSuave();
   });
-  
-        topbar.style.opacity = "1";
-        divisor.style.opacity = "1";
-        deviceInfo.style.opacity = "1";
-        cards.style.opacity = "1";
-
-        bgMusic.play().catch(() => {
-            document.addEventListener('click', () => bgMusic.play(), { once: true });
-        });
-    }
-  });
 
   function abrirModal(id) {
     document.getElementById(id).style.display = 'flex';
