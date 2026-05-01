@@ -296,7 +296,7 @@
           const cardElements = document.querySelectorAll('.card');
           cardElements.forEach(card => card.classList.add('efeito-entrada'));
           
-          window.scrollTo(0, 0);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         }, 50);
       });
     }, 500);
