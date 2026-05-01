@@ -79,7 +79,7 @@
     <h2>Download & Apps</h2>
     
     <p style="background: rgba(62, 198, 184, 0.1); padding: 10px; border-radius: 8px; font-size: 0.9rem; border: 1px solid rgba(62, 198, 184, 0.3); color: #3ec6b8; margin-bottom: 15px;">
-      <b>Dica contra anúncios:</b> Ative o DNS Privado <b>dns.adguard.com</b> nas configurações do seu celular antes de prosseguir with o download.
+      <b>Dica contra anúncios:</b> Ative o DNS Privado <b>dns.adguard.com</b> nas configurações do seu celular antes de prosseguir com o download.
     </p>
 
     <h3>1. Onde baixar o jogo:</h3>
@@ -188,7 +188,7 @@
     <p><i>Você deve reiniciar o jogo para os mods aparecerem.</i></p>
     
     <p style="margin-top:15px; font-weight:bold;">Como colocar Mods:</p>
-    <video class="step-video" controls playsinline controlsList="nodownload">
+    <video class="step-video" controls playsinline controlsList="nodownload" oncontextmenu="return false;">
       <source src="video/ColocarMods-demonstrativo.mp4" type="video/mp4">
     </video>
 
@@ -200,15 +200,15 @@
       C:/Users/Container/Documents/Electronic Arts/The Sims 4/Mods
     </code>
     
+    <p style="margin-top:15px; font-weight:bold;">Como ativar os drivers do Wicked:</p>
+    <video class="step-video" controls playsinline controlsList="nodownload" oncontextmenu="return false;">
+      <source src="video/ComoColocarWickedWhims-demonstrativo.mp4" type="video/mp4">
+    </video>
+    
     <a href="https://wicked.cc/mods/admin/wickedwhims/#download" target="_blank" class="btn-download" style="background: #eb34e8; color: #fff;">Baixar WickedWhims</a>
 
     <p><b>Tradução WickedWhims (Opcional, só baixe a tradução se você for baixar o WickedWhims):</b></p>
-    <a href="https://wicked.cc/translations/mutsvki/traducao-pt-br-wickedwhims-v180a-e-v182/" target="_blank" class="btn-download" style="margin-top: 10px;" id="btn-trad-wicked">Baixar Tradução Wicked</a>
-
-    <p style="margin-top:15px; font-weight:bold;">Como ativar os drivers do Wicked:</p>
-    <video class="step-video" controls playsinline controlsList="nodownload">
-      <source src="video/ComoColocarWickedWhims-demonstrativo.mp4" type="video/mp4">
-    </video>
+    <a href="https://wicked.cc/translations/mutsvki/traducao-pt-br-wickedwhims-v180a-e-v182/" target="_blank" class="btn-download" style="margin-top: 10px; background: #eb34e8; color: #fff;" id="btn-trad-wicked">Baixar Tradução Wicked</a>
 
     <p style="margin-top:20px;"><b>Dica do Aten:</b> Organize seus mods no Android em uma pasta chamada <b>'SIMS 4 MODS'</b> usando o Cx Explorador. No contêiner, fica muito mais fácil de mover tudo de uma vez do Drive D: para a pasta Mods.</p>
 
@@ -216,7 +216,8 @@
       <b>Erro/Bug?</b> Se o mod não carregar, delete o arquivo <b>localthumbcache.package</b> na pasta principal do jogo em Documents.
     </p>
     
-    <video class="step-video" controls playsinline controlsList="nodownload" style="margin-top:10px;">
+    <p style="margin-top:10px; text-align: center; font-weight: bold;">Demonstração:</p>
+    <video class="step-video" controls playsinline controlsList="nodownload" oncontextmenu="return false;" style="margin-top:5px;">
       <source src="video/Erros-BugsCache.mp4" type="video/mp4">
     </video>
   </div>
@@ -278,7 +279,6 @@
   bgMusic.loop = true;
   bgMusic.volume = 0.1;
 
-  // Botão de Áudio (será criado dinamicamente para harmonia)
   const muteBtn = document.createElement('button');
   muteBtn.id = 'mute-control';
   muteBtn.innerHTML = '🔊';
@@ -301,24 +301,35 @@
     divisor.style.display = 'block';
     deviceInfo.style.display = 'block';
     cards.style.display = 'grid';
-    muteBtn.style.display = 'flex'; // Mostra o controle de som
+    muteBtn.style.display = 'flex';
     
     topbar.classList.add('efeito-entrada');
     divisor.classList.add('efeito-entrada');
     deviceInfo.classList.add('efeito-entrada');
     cards.classList.add('efeito-entrada');
+    
+    // Tenta tocar se já estiver aberto
+    bgMusic.play().catch(() => console.log("Aguardando interação para som"));
   }
 
   btn.addEventListener('click', () => {
     sessionStorage.setItem('guiaAberto', 'true');
-    bgMusic.play().catch(e => console.log("Áudio aguardando interação")); 
+    bgMusic.play(); 
     mostrarConteudo();
     window.scrollTo(0, 0);
   });
 
-  if (sessionStorage.getItem('guiaAberto') === 'true') {
-    mostrarConteudo();
-  }
+  // Tocar ao recarregar a página se já estiver aberto
+  window.addEventListener('load', () => {
+    if (sessionStorage.getItem('guiaAberto') === 'true') {
+        mostrarConteudo();
+        // O navegador pode bloquear o play() automático no load.
+        // Se falhar, ele tocará no próximo clique do usuário.
+        bgMusic.play().catch(() => {
+            document.addEventListener('click', () => bgMusic.play(), { once: true });
+        });
+    }
+  });
 
   function abrirModal(id) {
     document.getElementById(id).style.display = 'flex';
