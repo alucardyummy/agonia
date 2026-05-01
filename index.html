@@ -339,49 +339,50 @@
   }
 
   function criarPoeiraCosmica() {
-    const quantidade = 25;
-    const cores = ['#3ec6b8', '#ffffff', '#a557ff', '#00ffff'];
+  const quantidade = 30;
+  const corCiano = '#3ec6b8';
 
-    for (let i = 0; i < quantidade; i++) {
-      const particula = document.createElement('div');
-      particula.classList.add('poeira-cosmica');
-      
-      const corSorteada = cores[Math.floor(Math.random() * cores.length)];
-      particula.style.boxShadow = `0 0 6px ${corSorteada}, 0 0 10px ${corSorteada}`;
-      particula.style.backgroundColor = (Math.random() > 0.5) ? '#fff' : corSorteada;
+  for (let i = 0; i < quantidade; i++) {
+    const particula = document.createElement('div');
+    particula.classList.add('poeira-cosmica');
+    
+    particula.style.backgroundColor = corCiano;
+    particula.style.boxShadow = `0 0 4px ${corCiano}, 0 0 8px ${corCiano}`;
 
-      const rect = muteBtn.getBoundingClientRect();
-      particula.style.left = (rect.left + rect.width / 2) + 'px';
-      particula.style.top = (rect.top + rect.height / 2) + 'px';
-      
-      const angulo = Math.random() * Math.PI * 2;
-      const velocidade = Math.random() * 100 + 50; 
-      const x = Math.cos(angulo) * velocidade;
-      const y = Math.sin(angulo) * velocidade;
-      
-      particula.style.setProperty('--x', `${x}px`);
-      particula.style.setProperty('--y', `${y}px`);
-      
-      const tamanho = Math.random() * 3 + 1 + 'px';
-      particula.style.width = tamanho;
-      particula.style.height = tamanho;
+    const rect = muteBtn.getBoundingClientRect();
+    particula.style.left = (rect.left + rect.width / 2) + 'px';
+    particula.style.top = (rect.top + rect.height / 2) + 'px';
+    
+    const angulo = Math.random() * Math.PI * 2;
+    const velocidade = Math.random() * 80 + 30; 
+    const x = Math.cos(angulo) * velocidade;
+    const y = Math.sin(angulo) * velocidade;
+    
+    particula.style.setProperty('--x', `${x}px`);
+    particula.style.setProperty('--y', `${y}px`);
+    
+    const tamanho = (Math.random() * 1.5 + 0.5) + 'px';
+    particula.style.width = tamanho;
+    particula.style.height = tamanho;
 
-      document.body.appendChild(particula);
-      setTimeout(() => { particula.remove(); }, 1200);
-    }
+    document.body.appendChild(particula);
+    
+    setTimeout(() => {
+      particula.remove();
+    }, 1200);
   }
-  
-  muteBtn.addEventListener('click', () => {
-    
-    bgMusic.muted = !bgMusic.muted;
-    muteBtn.innerHTML = bgMusic.muted ? '🔇' : '🔊';
-    
-    if (!bgMusic.muted) {
-      bgMusic.play().catch(() => {});
-    }
+}
 
-    criarPoeiraCosmica();
-  });
+muteBtn.addEventListener('click', () => {
+  bgMusic.muted = !bgMusic.muted;
+  muteBtn.innerHTML = bgMusic.muted ? '🔇' : '🔊';
+  
+  if (!bgMusic.muted) {
+    bgMusic.play().catch(() => {});
+  }
+
+  criarPoeiraCosmica();
+});
 </script>
 
 </body>
