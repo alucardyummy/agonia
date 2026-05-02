@@ -8,8 +8,8 @@
 }
 
 html {
-  background-color: #0a0a0a !important;
   scroll-behavior: smooth;
+  background-color: #0a0a0a !important;
 }
 
 * {
@@ -21,8 +21,6 @@ html {
 }
 
 body {
-  background: url('img/fundinho.png') no-repeat center center fixed;
-  background-size: cover;
   color: #fff;
   line-height: 1.6;
   overflow-x: hidden;
@@ -232,14 +230,28 @@ body::before {
 }
 
 @keyframes cairEsumir {
-  0% { transform: translate(0, 0) scale(1.5); opacity: 1; }
-  100% { transform: translate(var(--x), calc(var(--y) + 100px)) scale(0); opacity: 0; }
+  0% {
+    transform: translate(0, 0) scale(1.5);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--x), calc(var(--y) + 100px)) scale(0);
+    opacity: 0;
+  }
 }
 
 @keyframes brilharSuave {
-  0% { transform: translate(0, 0) scale(0); opacity: 0; }
-  30% { opacity: 1; }
-  100% { transform: translate(var(--x), var(--y)) scale(1.5); opacity: 0; }
+  0% {
+    transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--x), var(--y)) scale(1.5);
+    opacity: 0;
+  }
 }
 
 #mute-control {
@@ -338,8 +350,8 @@ video::-webkit-media-controls-panel { width: calc(100% + 30px); }
 
 .config-box {
   background: rgba(255, 255, 255, 0.05) !important;
-  backdrop-filter: blur(40px) brightness(1.2);
-  -webkit-backdrop-filter: blur(40px) brightness(1.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   padding: 15px;
   border-radius: 15px;
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -373,4 +385,4 @@ video::-webkit-media-controls-panel { width: calc(100% + 30px); }
 .modal-content::-webkit-scrollbar-thumb {
   background: #3ec6b8;
   border-radius: 10px;
-}
+} 
