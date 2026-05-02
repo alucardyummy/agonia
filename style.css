@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
 
 @font-face {
   font-family: 'LemonMilk';
@@ -9,10 +9,6 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #0a0a0a;
-}
-
-overscroll-behavior: none;
   background-color: #0a0a0a;
 }
 
@@ -423,4 +419,4 @@ video::-webkit-media-controls-panel { width: calc(100% + 30px); }
 .modal-content::-webkit-scrollbar-thumb {
   background: #3ec6b8;
   border-radius: 10px;
-}
+} 
