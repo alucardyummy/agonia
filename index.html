@@ -364,12 +364,12 @@
 
     cursor.style.transform = `translate(${x}px, ${y}px)`;
     
+    cursor.style.opacity = "1";
+    setTimeout(() => { cursor.style.opacity = "0"; }, 250);
+
     if (mostrarBolinha) {
-      cursor.style.opacity = "1";
-      setTimeout(() => { cursor.style.opacity = "0"; }, 250);
       criarPoeiraCosmica(x, y, true);
     } else {
-      cursor.style.opacity = "0";
       criarPoeiraCosmica(x, y, false);
     }
   };
