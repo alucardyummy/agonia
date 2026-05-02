@@ -489,4 +489,12 @@ border-radius: 10px;
 #mute-control:active, #mute-control:focus {
     background-color: rgba(0,0,0,0.6) !important;
     outline: none !important;
-} 
+}
+
+.card-icon[src*="img/mimi.gif"],
+.card-icon[src*="img/conteiner-wow.png"] {
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 12px rgba(62, 198, 184, 0.7));
+}
