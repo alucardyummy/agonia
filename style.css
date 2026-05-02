@@ -25,11 +25,7 @@ html {
 
 body {
     font-family: 'Space Grotesk', sans-serif !important;
-    background-color: #0a0a0a;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-    width: 100%;
-    min-height: 100vh;
+    background-color: transparent;
 }
 
 body::before {
@@ -95,32 +91,28 @@ transition: 0.3s ease;
 
 .hero {
     min-height: 100vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: #0a0a0a;
+    background: transparent;
     position: relative;
     overflow: hidden;
-    width: 100%;
 }
 
 .hero::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(
-        circle at center, 
-        rgba(62, 198, 184, 0.15) 0%, 
-        rgba(62, 198, 184, 0.05) 40%, 
-        transparent 75%
-    );
+    top: 50%;
+    left: 50%;
+    width: 150vw;
+    height: 150vh;
+    background: radial-gradient(circle, rgba(62, 198, 184, 0.15) 0%, transparent 60%);
+    transform: translate(-50%, -50%);
     pointer-events: none;
-    z-index: 0;
+    z-index: -1;
 }
 
 .hero-text {
@@ -332,16 +324,17 @@ transform: scale(0.80);
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
+    width: 100vw;
+    height: 100vh;
+    background: #000000 !important;
     display: none;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 2000;
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
 }
+
 
 .modal-content {
 position: relative;
