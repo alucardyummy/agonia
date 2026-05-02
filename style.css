@@ -9,7 +9,7 @@
 
 html {
     scroll-behavior: smooth;
-    overscroll-behavior: none;
+    overscroll-behavior: auto;
     background-color: transparent;
 }
 
