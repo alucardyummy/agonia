@@ -179,7 +179,7 @@ padding: 20px;
     background: rgba(255, 255, 255, 0.03) !important; 
     padding: 25px;
     border-radius: 35px;
-    
+     backdrop-filter: blur(15px); 
     border: 1px solid rgba(255, 255, 255, 0.25);
     
     box-shadow: 
@@ -207,7 +207,6 @@ padding: 20px;
     content: "";
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     z-index: -1;
     
