@@ -280,14 +280,17 @@
         }
 
      function copiarLink(elemento) {
+    event.preventDefault(); 
     navigator.clipboard.writeText(window.location.href);
     
+    elemento.blur();
+
     setTimeout(() => {
         alert('Link copiado! Mande para aquele seu amigo que ainda acha que precisa de um i9 pra jogar Sims. 😋');
     }, 200);
      }
-
-        function criarPoeira(x, y) {
+     
+     function criarPoeira(x, y) {
             for (let i = 0; i < 8; i++) {
                 const p = document.createElement('div');
                 p.className = 'poeira-cosmica';
