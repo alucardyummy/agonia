@@ -479,15 +479,21 @@ video {
     }
 }
 
-.blur-in { 
-    animation: blurIn 1.2s forwards; 
+body.blur-in {
+    animation: blurIn 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards !important;
 }
 
 @keyframes blurIn {
-    0% { filter: blur(15px); opacity: 0; }
-    100% { filter: blur(0); opacity: 1; }
+    0% { 
+        filter: blur(20px); 
+        opacity: 0;
+    }
+    100% { 
+        filter: blur(0px); 
+        opacity: 1;
+    }
 }
 
-#custom-cursor {
-    display: block !important;
+body.blur-in::before {
+    filter: inherit;
 }
