@@ -544,17 +544,17 @@ body::before {
 
 .back-to-top {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    background: rgba(255, 255, 255, 0.05);
+    bottom: 20px;
+    left: 20px;
+    width: 55px;
+    height: 55px;
+    background: rgba(10, 10, 10, 0.8);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50%;
     color: white;
-    font-size: 20px;
+    font-size: 24px;
+    font-weight: bold;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -562,8 +562,28 @@ body::before {
     z-index: 1000;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    transition: all 0.4s ease;
+    border: none;
+    overflow: hidden;
+}
+
+.back-to-top::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background: conic-gradient(from 0deg, transparent 70%, #ffffff 100%);
+    border-radius: 50%;
+    animation: rotateCobrinha 2s linear infinite;
+    z-index: -1;
+}
+
+.back-to-top::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    background: rgba(10, 10, 10, 0.9);
+    border-radius: 50%;
+    z-index: -1;
 }
 
 .back-to-top.show {
@@ -571,14 +591,42 @@ body::before {
     visibility: visible;
 }
 
-.back-to-top:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-    transform: translateY(-5px);
+@keyframes rotateCobrinha {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 .back-to-top:active {
     transform: scale(0.9);
-    border-color: #fff;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.share-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #ffffff !important;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.85rem;
+    padding: 10px 20px;
+    border: 1px solid rgba(62, 198, 184, 0.3);
+    border-radius: 20px;
+    background: rgba(10, 10, 10, 0.8);
+    transition: box-shadow 0.2s ease, transform 0.1s ease, border-color 0.2s ease;
+    cursor: pointer;
+}
+
+.share-link:hover {
+    border-color: rgba(62, 198, 184, 0.8);
+    box-shadow: 0 0 10px rgba(62, 198, 184, 0.2);
+}
+
+.share-link:active {
+    transform: scale(0.95);
+    border-color: #3ec6b8;
+    
+    box-shadow: 0 0 30px rgba(62, 198, 184, 1), 
+                inset 0 0 10px rgba(62, 198, 184, 0.5);
+    
+    transition: box-shadow 0.05s ease, transform 0.05s ease;
 }
