@@ -79,13 +79,14 @@
         <p>Jogo e Mods totalmente em Português</p>
     </div>
 
-    <div class="card" onclick="abrirModal('modal-contêiner', this)">
-        <div class="card-glass"></div>
-        <div class="card-glow"></div>
-        <img src="img/conteiner-wow.png" class="card-icon proibido">
-        <h3>Contêiner & Arquivos</h3>
-        <p>Interface do Windows e arquivos</p>
-    </div>
+    <div class="card" id="ultimo-card" onclick="abrirModal('modal-contêiner', this)">
+    <div class="card-glass"></div>
+    <div class="card-glow"></div>
+    <img src="img/conteiner-wow.png" class="card-icon proibido">
+    <h3>Contêiner & Arquivos</h3>
+    <p>Interface do Windows e arquivos</p>
+</div>
+         
         </section>
     </main>
 
@@ -329,17 +330,26 @@
 <script>
     const backToTop = document.getElementById("backToTop");
 
-    window.onscroll = function() {
-        if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+    const backToTop = document.getElementById("backToTop");
+const ultimoCard = document.getElementById("ultimo-card");
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
             backToTop.classList.add("show");
         } else {
             backToTop.classList.remove("show");
         }
-    };
+    });
+}, {
+    threshold: 0.1
+});
 
-    backToTop.onclick = function() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
+observer.observe(ultimoCard);
+
+backToTop.onclick = function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+};
 </script>
  
 </body>
