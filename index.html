@@ -264,7 +264,7 @@
     const coracao = document.createElement('div');
     coracao.classList.add('heart-particle');
     
-    const size = Math.random() * 20 + 30; 
+    const size = Math.random() * 25 + 20; 
     coracao.style.width = `${size}px`;
     coracao.style.height = `${size}px`;
     
@@ -273,15 +273,16 @@
     
     document.body.appendChild(coracao);
 
+    const tempoVida = Math.random() * 4000 + 2000;
     setTimeout(() => {
         const rect = coracao.getBoundingClientRect();
         if (typeof estourarBolha === 'function') {
             estourarBolha(rect.left + size/2, rect.top + size/2);
         }
         coracao.remove();
-    }, Math.random() * 3000 + 3000);
+    }, tempoVida);
 }
-  
+    
     function criarPoeira(x, y) {
         for (let i = 0; i < 8; i++) {
             const p = document.createElement('div');
