@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sims4AndroidBR</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="img/BRsims-fav.webp">
@@ -268,8 +268,8 @@
         function abrirModal(id, element) {
     const modal = document.getElementById(id);
     modal.style.display = 'flex';
-    document.body.classList.add('modal-aberto');
-
+    document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, user-scalable=yes');
+    
     if(element) {
         element.style.transform = 'scale(0.95)';
         setTimeout(() => element.style.transform = '', 100);
@@ -279,9 +279,14 @@
         function fecharModal(id) {
     const modal = document.getElementById(id);
     modal.style.display = 'none';
-    document.body.classList.remove('modal-aberto');
+    document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+    
     modal.querySelectorAll('video').forEach(v => v.pause());
-        }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+});
      
      async function copiarLink(elemento) {
     const shareData = {
