@@ -810,8 +810,6 @@ img[src*="nhaw.webp"] {
   animation-iteration-count: 1;
 }
 
-.blur-in, 
-.hero, 
 .config-box, 
 .card, 
 .card-glass, 
@@ -824,4 +822,12 @@ img[src*="nhaw.webp"] {
 
 video {
     transform: translateZ(0);
+}
+
+body {
+    touch-action: manipulation; 
+}
+
+.modal-content {
+    touch-action: pan-x pan-y pinch-zoom !important;
 }
