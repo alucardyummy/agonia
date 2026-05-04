@@ -710,7 +710,7 @@ img[src*="nhaw.webp"] {
 .heart-particle {
     position: fixed;
     bottom: -10vh;
-    background-image: url('coracoes-pixel.gif'); 
+    background-image: url('img/coracoes-pixel.gif'); 
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
