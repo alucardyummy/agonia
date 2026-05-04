@@ -682,7 +682,7 @@ body.modal-aberto {
     opacity: 1;
 }
 
-img[src*="nhaw.gif"] {
+img[src*="nhaw.webp"] {
     transition: filter 2s ease, transform 0.2s ease !important;
 }
 
