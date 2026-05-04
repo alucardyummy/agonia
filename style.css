@@ -729,13 +729,14 @@ img[src*="nhaw.webp"] {
     100% { transform: translateY(-130vh) translateX(var(--random-x)) rotate(15deg); opacity: 0; }
 }
 
-.pop-bubble {
+.pop-bubble-original {
     position: fixed;
-    width: 2px; height: 2px;
+    width: 3px; height: 3px;
     background: #ff69b4;
     border-radius: 50%;
     pointer-events: none;
     z-index: 10001;
+    box-shadow: 0 0 4px #ff69b4;
     animation: particulaExplosao 0.6s ease-out forwards;
 }
 
@@ -753,4 +754,36 @@ img[src*="nhaw.webp"] {
 @keyframes suavePulso {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.03); }
+}
+
+.pop-bubble-fumaca {
+    position: fixed;
+    width: 8px; height: 8px;
+    background: #ffd1eb;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10001;
+    filter: blur(3px); 
+    box-shadow: 0 0 10px #ff69b4;
+    animation: efeitoFumacaParticles 0.8s ease-out forwards;
+}
+
+@keyframes efeitoFumacaParticles {
+    0% { transform: translate(0, 0) scale(1); opacity: 1; }
+    100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; filter: blur(6px); }
+}
+
+.vibe-poeira {
+    animation-play-state: paused !important;
+    filter: blur(10px) brightness(1.5);
+    opacity: 0 !important;
+    transform: scale(1.5);
+    transition: all 1s ease-out;
+}
+
+.coracao-vira-fumaca {
+    filter: blur(8px); 
+    opacity: 0 !important;
+    transform: translateY(-20vh) scale(0.8) rotate(20deg);
+    transition: all 1.5s ease-out;
 }
