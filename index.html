@@ -291,26 +291,23 @@ document.addEventListener('DOMContentLoaded', () => {
      async function copiarLink(elemento) {
     const url = window.location.href;
     const toast = document.getElementById('toast-notif');
+      
+    await navigator.clipboard.writeText(url);
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2500);
 
     try {
-        if (!navigator.share) {
+        if (navigator.share) {
             await navigator.share({
                 title: 'Guia Sims 4 Android',
                 text: 'Dá uma olhada nesse guia! 😋🎮',
                 url: url
             });
-        } else {
-            await navigator.clipboard.writeText(url);
-            
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 2500);
         }
     } catch (err) {
-        console.log('Erro ou cancelado');
+        console.log('Compartilhamento cancelado');
     }
-}
+     }
      
      function criarPoeira(x, y) {
             for (let i = 0; i < 8; i++) {
