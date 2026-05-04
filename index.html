@@ -317,19 +317,20 @@ function criarExplosaoFumaca(x, y) {
 }
   
     function criarPoeira(x, y) {
-        for (let i = 0; i < 8; i++) {
-            const p = document.createElement('div');
-            p.className = 'poeira-cosmica';
-            p.style.left = x + 'px';
-            p.style.top = y + 'px';
-            const ax = (Math.random() - 0.5) * 100;
-            const ay = (Math.random() - 0.5) * 100;
-            p.style.setProperty('--x', ax + 'px');
-            p.style.setProperty('--y', ay + 'px');
-            p.style.animation = 'brilharSuave 0.6s forwards';
-            document.body.appendChild(p);
-            setTimeout(() => p.remove(), 600);
-        }
+    for (let i = 0; i < 8; i++) {
+        const p = document.createElement('div');
+        p.className = 'poeira-cosmica';
+        p.style.left = x + 'px';
+        p.style.top = y + 'px';
+        const ax = (Math.random() - 0.5) * 45;
+        const ay = (Math.random() - 0.5) * 45;
+        p.style.setProperty('--x', ax + 'px');
+        p.style.setProperty('--y', ay + 'px');
+        p.style.animation = 'brilharSuave 0.6s forwards';
+        
+        cursor.appendChild(p); 
+        setTimeout(() => p.remove(), 600);
+    }
     }
 
     const muteBtn = document.createElement('button');
@@ -415,13 +416,15 @@ function criarExplosaoFumaca(x, y) {
     }
 
     window.addEventListener('mousedown', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-        cursor.classList.remove('expandir-cursor');
-        void cursor.offsetWidth;
-        cursor.classList.add('expandir-cursor');
-        criarPoeira(e.clientX, e.clientY);
-    });
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    
+    cursor.classList.remove('expandir-cursor');
+    void cursor.offsetWidth; 
+    cursor.classList.add('expandir-cursor');
+
+    criarPoeira(25, 25); 
+});
 
     const scrollObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => { if (entry.isIntersecting) bttElement.classList.add("show"); else bttElement.classList.remove("show"); });
