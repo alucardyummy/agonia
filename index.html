@@ -271,8 +271,8 @@
             }
         }
     });
-     
-        function abrirModal(id, element) {
+
+     function abrirModal(id, element) {
     const modal = document.getElementById(id);
     modal.style.display = 'flex';
     document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, user-scalable=yes');
@@ -281,19 +281,15 @@
         element.style.transform = 'scale(0.95)';
         setTimeout(() => element.style.transform = '', 100);
     }
-        }
+}
 
-        function fecharModal(id) {
+function fecharModal(id) {
     const modal = document.getElementById(id);
     modal.style.display = 'none';
     document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
     
     modal.querySelectorAll('video').forEach(v => v.pause());
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
-});
      
      async function copiarLink(elemento) {
     const shareData = {
@@ -351,7 +347,34 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
     });
 });
-    </script>
+     window.addEventListener('load', () => {
+        const loader = document.getElementById('loader-overlay');
+        setTimeout(() => {
+            if (loader) loader.classList.add('hidden');
+        }, 1800); 
+    });
+
+    setTimeout(() => {
+        const loader = document.getElementById('loader-overlay');
+        if (loader && !loader.classList.contains('hidden')) {
+            loader.classList.add('hidden');
+        }
+    }, 4000);
+
+    const bttElement = document.getElementById("backToTop");
+    const targetCard = document.getElementById("ultimo-card");
+    const scrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (bttElement) bttElement.classList.toggle("show", entry.isIntersecting);
+        });
+    }, { threshold: 0.1 });
+    if (targetCard) scrollObserver.observe(targetCard);
+    if (bttElement) bttElement.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    </script> <footer class="footer-acido">
+    </footer>
+
+ <button id="backToTop" class="back-to-top">↑</button>
 
  <footer class="footer-acido">
     <button type="button" onclick="copiarLink(this)" class="share-link">
@@ -361,47 +384,5 @@ document.addEventListener('DOMContentLoaded', () => {
     <p>Feito com ♡ (e muita gambiarra) para quem não tem um PC da NASA.</p>
     <p class="sub-footer">Sims4AndroidBR — 2026. Se travar, é culpa do seu celular.</p>
  </footer>
-
-  <button id="backToTop" class="back-to-top">↑</button>
-
-<script>
- 
-    window.addEventListener('load', () => {
-        const loader = document.getElementById('loader-overlay');
-        const loaderGif = document.querySelector('.loader-gif');
-        
-        if (loaderGif) {
-            const currentSrc = loaderGif.src;
-            loaderGif.src = '';
-            loaderGif.src = currentSrc;
-        }
-
-        setTimeout(() => {
-            loader.classList.add('hidden');
-        }, 1800);
-    });
- 
-    const bttElement = document.getElementById("backToTop");
-    const targetCard = document.getElementById("ultimo-card");
-
-    const scrollObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                bttElement.classList.add("show");
-            } else {
-                bttElement.classList.remove("show");
-            }
-        });
-    }, { threshold: 0.1 });
-
-    if (targetCard) { 
-        scrollObserver.observe(targetCard); 
-    }
-
-    bttElement.onclick = function() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-</script>
- 
 </body>
 </html>
