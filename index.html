@@ -38,7 +38,7 @@
         <p><b>Processador:</b> MediaTek Dimensity 7200 Ultra</p>
         <p><b>RAM:</b> 12,0+6,0 GB</p>
         
-        <img src="nhaw.webp" class="pet-interativo" style="width: 100%; margin-top: 15px; border-radius: 8px; border: 1px solid rgba(62, 198, 184, 0.4); box-shadow: 0 0 15px rgba(62, 198, 184, 0.5); cursor: pointer;"> 
+         <img src="nhaw.webp" id="pet-clicavel" class="pet-interativo" style="width: 100%; margin-top: 15px; border-radius: 8px; border: 1px solid rgba(62, 198, 184, 0.4); box-shadow: 0 0 15px rgba(62, 198, 184, 0.5); cursor: pointer;">
     </div>
         </section>
 
@@ -239,7 +239,7 @@
     bgMusic.volume = 0.05;
 
     let gifClicks = 0;
-    const nhawGif = document.querySelector('.config-box img');
+    const nhawGif = document.getElementById('pet-clicavel');
     
     const hintCat = document.getElementById('hint-cat');
   
