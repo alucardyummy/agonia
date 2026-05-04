@@ -388,11 +388,20 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
  
+    <script> window.addEventListener('DOMContentLoaded', () => {
+        const loaderGif = document.querySelector('.loader-gif');
+        if (loaderGif) {
+            const currentSrc = loaderGif.src;
+            loaderGif.src = '';
+            loaderGif.src = currentSrc;
+        }
+    });
+
     window.addEventListener('load', () => {
         const loader = document.getElementById('loader-overlay');
         setTimeout(() => {
             loader.classList.add('hidden');
-        }, 2000);
+        }, 1800);
     });
 </script>
  
