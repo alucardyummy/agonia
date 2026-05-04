@@ -48,8 +48,8 @@ body::after {
     position: fixed;
     top: 0; left: 0;
     width: 100vw; height: 100vh;
-    background: radial-gradient(circle at center, transparent 30%, rgba(255, 0, 222, 0.15) 100%);
-    z-index: -5;
+    background: radial-gradient(circle at center, transparent 0%, rgba(255, 0, 222, 0.15) 40%, rgba(255, 0, 222, 0.45) 100%);
+    z-index: 9999;
     opacity: 0;
     transition: opacity 2s ease;
     pointer-events: none;
@@ -710,16 +710,20 @@ img[src*="nhaw.webp"] {
 .heart-particle {
     position: fixed;
     bottom: -10vh;
+    background-image: url('coracoes-pixel.gif'); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     z-index: 10000;
     pointer-events: none;
-    user-select: none;
+    image-rendering: pixelated; 
     animation: subirLivremente 7s linear forwards;
 }
 
 @keyframes subirLivremente {
     0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
     10% { opacity: 0.8; }
-    100% { transform: translateY(-120vh) translateX(var(--random-x)) rotate(20deg); opacity: 0; }
+    100% { transform: translateY(-130vh) translateX(var(--random-x)) rotate(20deg); opacity: 0; }
 }
 
 .pop-bubble {
