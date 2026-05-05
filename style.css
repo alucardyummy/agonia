@@ -179,6 +179,8 @@ body.vibe-rosa::after {
     overflow: hidden;
     transform: translateZ(0);
     transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: transform, opacity;
+    backface-visibility: hidden;
 }
 
 .card-glass {
@@ -485,6 +487,7 @@ video {
         margin: 0 auto !important;
         gap: 30px !important;
         padding: 40px !important;
+        contain: layout;
     }
 
     .card {
