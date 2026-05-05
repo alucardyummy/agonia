@@ -512,7 +512,7 @@ video {
     background: #0a0a0a;
     z-index: 999999;
     pointer-events: none;
-    animation: sumirCortina 1.5s ease-in-out forwards;
+    animation: sumirCortina 1.9s ease-in-out forwards;
 }
 
 @keyframes sumirCortina {
