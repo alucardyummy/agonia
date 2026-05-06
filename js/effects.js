@@ -1,4 +1,11 @@
+let totalParticles = 0;
+const MAX_PARTICLES = 50;
+
 export function criarUmCoracao() {
+    if (totalParticles >= MAX_PARTICLES) return;
+    
+    totalParticles++;
+    
     const coracao = document.createElement('div');
     coracao.classList.add('heart-particle');
     const size = Math.random() * 50 + 45; 
@@ -9,11 +16,13 @@ export function criarUmCoracao() {
     document.body.appendChild(coracao);
 
     const tempoVida = Math.random() * 3000 + 3000;
+    
     setTimeout(() => {
         const rect = coracao.getBoundingClientRect();
         const x = rect.left + size/2;
         const y = rect.top + size/2;
         const sorteio = Math.random();
+
         if (sorteio < 0.25) {
             origemExplosaoPop(x, y);
             coracao.remove();
@@ -27,6 +36,8 @@ export function criarUmCoracao() {
             coracao.classList.add('coracao-vira-fumaca');
             setTimeout(() => coracao.remove(), 1500);
         }
+        
+        totalParticles--; 
     }, tempoVida);
 }
 
