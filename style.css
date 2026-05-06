@@ -28,6 +28,25 @@
   box-shadow: 0 0 15px rgba(62, 198, 184, 0.5);
 }
 
+.alert {
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  margin: 15px 0;
+}
+
+.alert-yellow {
+  background: rgba(255, 193, 7, 0.1);
+  border: 1px solid #ffc107;
+  color: #ffc107;
+}
+
+.alert-cyan {
+  background: rgba(62, 198, 184, 0.1);
+  border: 1px solid rgba(62, 198, 184, 0.3);
+  color: #3ec6b8;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
 
 @font-face {
