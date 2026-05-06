@@ -28,20 +28,11 @@ export async function copiarLink() {
 }
 
 export function esperarCarregar() {
-    return new Promise((resolve) => {
-        const imagens = document.images;
-        let carregadas = 0;
-        if (imagens.length === 0) resolve();
-        for (let img of imagens) {
-            if (img.complete) {
-                carregadas++;
-            } else {
-                img.onload = img.onerror = () => {
-                    carregadas++;
-                    if (carregadas === imagens.length) resolve();
-                };
-            }
-        }
-        if (carregadas === imagens.length) resolve();
-    });
+    const imagens = [...document.images];
+    return Promise.all(imagens.map(img => {
+        if (img.complete) return Promise.resolve();
+        return new Promise(resolve => {
+            img.onload = img.onerror = resolve;
+        });
+    }));
 }
