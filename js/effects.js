@@ -26,18 +26,24 @@ export function criarUmCoracao() {
         if (sorteio < 0.25) {
             origemExplosaoPop(x, y);
             coracao.remove();
+            totalParticles--; 
         } else if (sorteio < 0.50) {
             criarExplosaoFumaca(x, y); 
             coracao.remove();
+            totalParticles--;
         } else if (sorteio < 0.75) {
             coracao.classList.add('vibe-poeira');
-            setTimeout(() => coracao.remove(), 1000);
+            setTimeout(() => {
+                coracao.remove();
+                totalParticles--;
+            }, 1000);
         } else {
             coracao.classList.add('coracao-vira-fumaca');
-            setTimeout(() => coracao.remove(), 1500);
+            setTimeout(() => {
+                coracao.remove();
+                totalParticles--;
+            }, 1500);
         }
-        
-        totalParticles--; 
     }, tempoVida);
 }
 
@@ -52,57 +58,5 @@ export function origemExplosaoPop(x, y) {
         p.style.setProperty('--dy', (Math.random() - 0.5) * 150 + 'px');
         document.body.appendChild(p);
         setTimeout(() => p.remove(), 600);
-    }
-}
-
-export function criarExplosaoFumaca(x, y) {
-    const quantidade = 15;
-    for (let i = 0; i < quantidade; i++) {
-        const p = document.createElement('div');
-        p.className = 'pop-bubble-fumaca';
-        const angle = Math.random() * Math.PI * 2;
-        const velocity = Math.random() * 80 + 20; 
-        const dx = Math.cos(angle) * velocity;
-        const dy = Math.sin(angle) * velocity;
-        p.style.left = x + 'px';
-        p.style.top = y + 'px';
-        p.style.setProperty('--dx', dx + 'px');
-        p.style.setProperty('--dy', dy + 'px');
-        document.body.appendChild(p);
-        setTimeout(() => p.remove(), 800);
-    }
-}
-
-export function criarPoeiraNoCursor(cursor) {
-    for (let i = 0; i < 8; i++) {
-        const p = document.createElement('div');
-        p.className = 'poeira-cosmica';
-        p.style.position = 'absolute';
-        p.style.left = '25px'; 
-        p.style.top = '25px';
-        const ax = (Math.random() - 0.5) * 45;
-        const ay = (Math.random() - 0.5) * 45;
-        p.style.setProperty('--x', ax + 'px');
-        p.style.setProperty('--y', ay + 'px');
-        p.style.animation = 'brilharSuave 0.6s forwards';
-        cursor.appendChild(p);
-        setTimeout(() => p.remove(), 600);
-    }
-}
-
-export function criarPoeiraLivre(x, y) {
-    for (let i = 0; i < 10; i++) {
-        const p = document.createElement('div');
-        p.className = 'poeira-cosmica';
-        p.style.position = 'fixed';
-        p.style.left = x + 'px';
-        p.style.top = y + 'px';
-        const ax = (Math.random() - 0.5) * 120;
-        const ay = Math.random() * 150;
-        p.style.setProperty('--x', ax + 'px');
-        p.style.setProperty('--y', ay + 'px');
-        p.style.animation = 'brilharSuave 0.8s ease-out forwards';
-        document.body.appendChild(p);
-        setTimeout(() => p.remove(), 800);
     }
 }
