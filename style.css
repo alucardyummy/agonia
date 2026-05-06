@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
 
 @font-face {
     font-family: 'LemonMilk';
@@ -38,6 +38,7 @@ body::before {
     height: 100vh;
     background: url('img/fundinho.webp') no-repeat center center;
     background-size: cover;
+    background-color: #0a0a0a !important;
     z-index: -10;
     transform: translateZ(0);
     backface-visibility: hidden;
@@ -325,14 +326,13 @@ body.vibe-rosa::after {
     position: fixed;
     top: 0; left: 0;
     width: 100vw; height: 100vh;
-    background: rgba(0, 0, 0, 0.85);
     display: none;
     justify-content: center;
     align-items: center;
     z-index: 2000;
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.9);
     overflow: hidden;
+    touch-action: pan-x pan-y pinch-zoom;
 }
 
 .modal-content {
@@ -536,10 +536,6 @@ video {
     }
 }
 
-body::before {
-    background-color: #0a0a0a !important;
-}
-
 .topbar {
     padding-top: 18px !important;
     padding-bottom: 10px;
@@ -659,9 +655,20 @@ body::before {
     transition: all 0s; 
 }
 
-body.modal-aberto {
-    overflow: hidden;
-    touch-action: none;
+body.modal-aberto .card-glass {
+    backdrop-filter: none !important;
+}
+
+body.modal-aberto .card-glow {
+    display: none !important;
+}
+
+body.modal-aberto::after {
+    display: none !important;
+}
+
+body:not(.modal-aberto) {
+    touch-action: pan-y;
 }
 
 .toast {
@@ -821,4 +828,10 @@ img[src*="nhaw.webp"] {
 @keyframes pulsoCarregamento {
     0% { transform: scale(0.9); opacity: 0.7; filter: drop-shadow(0 0 5px rgba(62, 198, 184, 0.4)); }
     100% { transform: scale(1.1); opacity: 1; filter: drop-shadow(0 0 25px rgba(62, 198, 184, 1)); }
+}
+
+#hint-cat {
+    transition: opacity 0.5s ease, transform 0.2s ease;
+    pointer-events: auto !important;
+    cursor: pointer;
 }
