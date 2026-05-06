@@ -60,3 +60,29 @@ export function origemExplosaoPop(x, y) {
         setTimeout(() => p.remove(), 600);
     }
 }
+
+export function criarPoeiraLivre(x, y) {
+    const poeira = document.createElement('div');
+    poeira.className = 'poeira-cosmica';
+    poeira.style.position = 'fixed';
+    poeira.style.left = x + 'px';
+    poeira.style.top = y + 'px';
+    
+    poeira.style.setProperty('--x', (Math.random() - 0.5) * 80 + 'px');
+    poeira.style.setProperty('--y', (Math.random() - 0.5) * 80 + 'px');
+    
+    poeira.style.animation = 'brilharSuave 0.8s ease-out forwards';
+    document.body.appendChild(poeira);
+    
+    setTimeout(() => poeira.remove(), 800);
+}
+
+export function criarPoeiraNoCursor(cursorElement) {
+    const rect = cursorElement.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+    
+    for(let i = 0; i < 3; i++) {
+        criarPoeiraLivre(x, y);
+    }
+} 
