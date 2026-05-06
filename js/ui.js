@@ -28,11 +28,16 @@ export async function copiarLink() {
 }
 
 export function esperarCarregar() {
-    const imagens = [...document.images];
-    return Promise.all(imagens.map(img => {
+    const imagens = [...document.images].filter(img => img.getAttribute('loading') !== 'lazy');
+
+    const carregamentoImagens = Promise.all(imagens.map(img => {
         if (img.complete) return Promise.resolve();
         return new Promise(resolve => {
             img.onload = img.onerror = resolve;
         });
     }));
+
+    const tempoLimite = new Promise(resolve => setTimeout(resolve, 3000));
+
+    return Promise.race([carregamentoImagens, tempoLimite]);
 }
